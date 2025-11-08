@@ -15,11 +15,13 @@ let clientes = [
 
 import express from "express";
 
+import findAll from "./../middleware/cliente/findAllClients.middleware.js";
+
 const app = express.Router();
 
-app.get('/api/clientes', (req, res) => {
-    res.json(clientes);
-});
+app.use(express.json());
+
+app.get('/api/clientes', findAll);
 
 // Rota para buscar um cliente pelo ID
 app.get('/api/clientes/:id', (req, res) => {
